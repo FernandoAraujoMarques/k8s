@@ -23,18 +23,18 @@ resource "aws_instance" "k8s" {
   instance_type = var.aws_instance
   key_name      = "aws_fernando"
   tags = {
-    Name = var.aws_name
+    Name = "knode-k8s-${count.index + 1}"
   }
 }
 
 resource "null_resource" "remote-exec" {
   triggers = {
-    public_ip = aws_instance.k8s.public_ip
+    public_ip = element(concat(aws_instance.k8s.*.public_ip,[""]), 0)
   }
 
   connection {
     type  = "ssh"
-    host  = aws_instance.k8s.public_ip
+    host  = element(concat(aws_instance.k8s.*.public_ip,[""]), 0)
     user  = "ubuntu"
     private_key = file ("aws_fernando.pem")
   }
