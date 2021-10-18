@@ -15,3 +15,8 @@ variable "aws_instance" {
   type    = string
   default = "t2.medium"
 }
+
+variable "aws_instance_count" {
+  type    = string
+  default = "4"
+}

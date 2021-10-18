@@ -18,6 +18,7 @@ data "aws_security_group" "default" {
 }
 
 resource "aws_instance" "k8s" {
+  count         = var.aws_instance_count
   ami           = var.aws_ami
   instance_type = var.aws_instance
   key_name      = "aws_fernando"
@@ -43,7 +44,7 @@ resource "null_resource" "remote-exec" {
     inline = [
       "sudo apt-get update -y",
       "sudo apt-get upgrade -y",
-      "sudo minikube start",
+
     ]
   }
 }
