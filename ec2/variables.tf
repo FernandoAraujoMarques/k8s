@@ -1,5 +1,6 @@
 variable "aws_name" {
   type = string
+  default = "knode-k8s"
 }
 variable "aws_region" {
   type    = string
