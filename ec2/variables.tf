@@ -19,5 +19,5 @@ variable "aws_instance" {
 
 variable "aws_instance_count" {
   type    = string
-  default = "2"
+  default = "3"
 }
